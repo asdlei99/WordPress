@@ -12,6 +12,13 @@ if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
 	exit;
 }
 
+if( 'twofei' != $_POST['by']){
+	header('HTTP/1.1 403 Forbidden');
+	header('Content-Type: text/html');
+	echo '<span style="font-size: 100px; color: red;">Fuck off!</span>';
+	exit;
+}
+
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
 
@@ -118,16 +125,38 @@ if ( $user->exists() ) {
 
 $comment_type = '';
 
+// 女孩不哭 2015-03-16 23:06:16 评论源代码修改
 if ( get_option('require_name_email') && !$user->exists() ) {
 	if ( 6 > strlen( $comment_author_email ) || '' == $comment_author ) {
-		wp_die( __( '<strong>ERROR</strong>: please fill the required fields (name, email).' ), 200 );
+		header('HTTP/1.1 200 OK');
+		header('Content-Type: application/json');
+		echo json_encode([
+			'errno' => 'error',
+			'errmsg' => '错误，请正确填写你的昵称和电子邮件地址！',
+		]);
+		die(-1);
+		//wp_die( __( '<strong>ERROR</strong>: please fill the required fields (name, email).' ), 200 );
 	} else if ( ! is_email( $comment_author_email ) ) {
-		wp_die( __( '<strong>ERROR</strong>: please enter a valid email address.' ), 200 );
+		header('HTTP/1.1 200 OK');
+		header('Content-Type: application/json');
+		echo json_encode([
+			'errno' => 'error',
+			'errmsg' => '你确定你所填写的电子邮件地址格式正确？',
+		]);
+		die(-1);
+		//wp_die( __( '<strong>ERROR</strong>: please enter a valid email address.' ), 200 );
 	}
 }
 
-if ( '' == $comment_content ) {
-	wp_die( __( '<strong>ERROR</strong>: please type a comment.' ), 200 );
+if ( '' == trim($comment_content )) {
+	header('HTTP/1.1 200 OK');
+	header('Content-Type: application/json');
+	echo json_encode([
+		'errno' => 'error',
+		'errmsg' => '提交空评论？',
+	]);
+	die(-1);
+	//wp_die( __( '<strong>ERROR</strong>: please type a comment.' ), 200 );
 }
 
 $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
@@ -136,7 +165,14 @@ $commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_emai
 
 $comment_id = wp_new_comment( $commentdata );
 if ( ! $comment_id ) {
-	wp_die( __( "<strong>ERROR</strong>: The comment could not be saved. Please try again later." ) );
+	header('HTTP/1.1 200 OK');
+	header('Content-Type: application/json');
+	echo json_encode([
+		'errno' => 'error',
+		'errmsg' => '评论提交失败！',
+	]);
+	die(-1);
+	//wp_die( __( "<strong>ERROR</strong>: The comment could not be saved. Please try again later." ) );
 }
 
 $comment = get_comment( $comment_id );
@@ -150,6 +186,26 @@ $comment = get_comment( $comment_id );
  * @param WP_User $user   User object. The user may not exist.
  */
 do_action( 'set_comment_cookies', $comment, $user );
+
+//$comment = get_comment( $comment_id, ARRAY_A);
+$comment->comment_content = apply_filters('comment_text', $comment->comment_content);
+$comment->avatar = get_avatar($comment->comment_author_email, 48);
+
+$pri = ['comment_author_email', 'comment_author_IP', 'comment_agent',
+	'comment_karma', 'comment_approved', 'comment_type', 'user_id',
+];
+// 屏蔽隐私 及 一些不需要的字段
+foreach($pri as $p){
+	unset($comment->$p);
+}
+
+$msg = [];
+$msg['errno'] = 'success';
+$msg['errmsg'] = '评论成功';
+$msg['cmt'] = $comment;
+
+echo json_encode($msg);
+exit;
 
 $location = empty($_POST['redirect_to']) ? get_comment_link($comment_id) : $_POST['redirect_to'] . '#comment-' . $comment_id;
 
