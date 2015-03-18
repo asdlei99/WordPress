@@ -1452,8 +1452,9 @@ function kses_init() {
 		kses_init_filters();
 }
 
-add_action('init', 'kses_init');
-add_action('set_current_user', 'kses_init');
+// 女孩不哭 禁用kses
+//add_action('init', 'kses_init');
+//add_action('set_current_user', 'kses_init');
 
 /**
  * Inline CSS filter
