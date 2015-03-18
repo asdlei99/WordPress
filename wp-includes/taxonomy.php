@@ -3354,6 +3354,8 @@ function wp_update_term( $term_id, $taxonomy, $args = array() ) {
 
 	// Check for duplicate slug
 	$duplicate = get_term_by( 'slug', $slug, $taxonomy );
+	// 女孩不哭 2015-03-17 22:23:01 允许重复的term
+	$duplicate = false;
 	if ( $duplicate && $duplicate->term_id != $term_id ) {
 		// If an empty slug was passed or the parent changed, reset the slug to something unique.
 		// Otherwise, bail.
