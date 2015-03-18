@@ -1,11 +1,12 @@
 <?php get_header(); ?>
 
-	<div id="content">
+	<div id="content-full">
 		<div class="search-result" >
-			<p><?php _e( 'Error', 'picochic' ); ?> 404</p>
 		</div>
 		<div class="entry">		
-			<p><?php _e('It seems we can\'t find what you\'re looking for. Perhaps searching, or one of the links below, can help.', 'picochic' )?></p>
+			<div style="text-align: center;">
+				<span style="font-size: 4em;">404 - Found ?</span>
+			</div>
 		</div>
 	</div>
 
