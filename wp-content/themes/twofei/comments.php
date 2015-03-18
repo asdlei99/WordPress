@@ -21,9 +21,13 @@
 	</ol>
 	<div id="load-comments">
 		<button>加载评论</button>
-		<span style="display: none; color: red;">
+		<span class="loading" style="display: none; color: red;">
 			<i class="fa fa-spin fa-spinner"></i> 
 			<span> 加载中...</span>
+		</span>
+		<span class="none" style="display: none; color: green;">
+			<i class="fa fa-info-circle"></i>
+			<span> 没有了！</span>
 		</span>
 		<input type="hidden" id="post_id" name="post_id" value="<?php echo $post->ID; ?>" />
 	</div>

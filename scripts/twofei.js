@@ -24,7 +24,7 @@ function comment_item(cmt) {
 var cmts_loaded = 0;
 
 jQuery('#load-comments button').click(function() {
-	jQuery('#load-comments span').show();
+	jQuery('#load-comments span.loading').show();
 	jQuery.get(
 		'/twofei-ajax.php',
 		'action=get_comments&number=5' 
@@ -35,10 +35,15 @@ jQuery('#load-comments button').click(function() {
 			for(var i=0; i<cmts.length; i++){
 				jQuery('.commentlist').append(comment_item(cmts[i]));
 			}
-			jQuery('#load-comments span').hide();
+			jQuery('#load-comments span.loading').hide();
 			cmts_loaded += cmts.length;
 			if(cmts.length == 0) {
-				alert('没有了！');
+				jQuery('#load-comments span.none').show();
+				setTimeout(function(){
+						jQuery('#load-comments span.none').hide();
+					},
+					1500
+				);
 			}
 		},
 		'json'
@@ -58,7 +63,12 @@ jQuery('#submit').click(function() {
 				jQuery('.comment-form-comment #comment').val('');
 			}
 			jQuery('.form-submit .submitting').hide();
-			alert(data.errmsg);
+			jQuery('.form-submit .succeeded').show();
+			setTimeout(function() {
+					jQuery('.form-submit .succeeded').hide();
+				},
+				1500
+			);
 		},
 		'json'
 	);
@@ -71,6 +81,7 @@ jQuery('#commentform .form-submit').append(
 	+	'<i class="fa fa-spin fa-spinner"></i>'
 	+	'<span> 正在提交...</span>'
 	+ '</span>'
+	+ '<span class="succeeded" style="display: none; color: green; margin-left: 1em;">'
+	+ '<i class="fa fa-info-circle"></i><span> 提交成功！</span></span>'
 );
-
 
