@@ -2,6 +2,7 @@
 /wp-content/themes/twentytwelve/
 /wp-content/plugins/syntaxhighlighter/
 /wp-content/plugins/tabs-in-post-editor/
+/wp-content/plugins/akismet/
 
 bg.mp3
 kimi.jpg
@@ -9,5 +10,4 @@ mbox
 
 /wp-content/plugins/get-recent-comments/
 /wp-content/languages/
-
 
