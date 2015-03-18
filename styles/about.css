@@ -1,0 +1,12 @@
+.entry .vcard {
+	font-size: 2em;
+}
+
+.entry .vcard .fa {
+	margin-right: 0.5em;
+}
+
+.entry .vcard a {
+	text-decoration: none;
+}
+

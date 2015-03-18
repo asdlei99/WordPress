@@ -1,0 +1,48 @@
+/* style for nginx */
+
+pre.ngx_conf {
+	margin-left: 20px;
+	padding-left: 5px;
+	border-left: 3px solid #090;
+	overflow: auto;
+	background-color: rgba(0, 144, 0, 0.1);
+}
+
+div.toc ul li ul li a, div.ngx_directive table tr td, pre.ngx_conf {
+	font-family: Consolas, monospace;
+}
+
+div.toc a {
+	padding: 3px;
+	text-decoration: none;
+}
+
+div.toc a:hover {
+	color: white;
+	background-color: rgba(0, 144, 0, 0.5);
+}
+
+.ngx_directive table {
+	background-color: beige;
+	border-collapse: collapse;
+	margin-bottom: 1em;
+}
+
+.ngx_directive table td {
+	padding-left: 3px;
+	padding-right: 3px;
+	border: 1px solid gray;
+}
+
+.ngx_directive {
+	margin-bottom: 20px;
+}
+
+tt, code, dt {
+	font-family: Consolas, monospace;
+}
+
+.entry sup a, .entry sub a {
+	text-decoration: none;
+}
+
