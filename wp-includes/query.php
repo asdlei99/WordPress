@@ -2501,6 +2501,39 @@ class WP_Query {
 				$fields = "$wpdb->posts.*";
 		}
 
+		// 女孩不哭 2015-01-25 21:56:00
+		// 索引文章时同时索引文章分类
+		if($q['category_name'] !== '' && !is_category()){
+			$tw_cats = explode('/', $q['category_name']);
+			$tw_query = $wpdb->prepare(
+				"select term_id from $wpdb->term_taxonomy where parent=0 AND taxonomy='category' AND term_id in (
+					select term_id from $wpdb->terms where slug=%s);", $tw_cats[0]);
+			$tw_result = $wpdb->get_results($tw_query);
+			if(count($tw_result) > 0){
+				$tw_parent_id = $tw_result[0]->term_id;
+				for($i=1; $i <= count($tw_cats)-1; $i++){
+					$tw_query = $wpdb->prepare(
+						"select term_id from $wpdb->term_taxonomy where parent=%d AND taxonomy='category' AND term_id in (select term_id from $wpdb->terms where slug=%s)",
+						$tw_parent_id,
+						$tw_cats[$i]
+					);
+					$tw_result = $wpdb->get_results($tw_query);
+					if(!$tw_result){
+						$where .= " AND 1=0";
+						break;
+					}
+
+					$tw_parent_id = $tw_result[0]->term_id;
+				}
+
+				$where .= " AND ID in (select object_id from $wpdb->term_relationships where term_taxonomy_id=$tw_parent_id)";
+				$where .= " AND post_status<>'trash'";
+			}
+			else{
+				$where .= " AND 1=0";
+			}
+		}
+
 		if ( '' !== $q['menu_order'] )
 			$where .= " AND $wpdb->posts.menu_order = " . $q['menu_order'];
 
