@@ -3727,8 +3727,9 @@ function wp_unique_post_slug( $slug, $post_ID, $post_status, $post_type, $post_p
 	} else {
 		// Post slugs must be unique across all posts.
 		$check_sql = "SELECT post_name FROM $wpdb->posts WHERE post_name = %s AND post_type = %s AND ID != %d LIMIT 1";
-		$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug, $post_type, $post_ID ) );
-
+		//$post_name_check = $wpdb->get_var( $wpdb->prepare( $check_sql, $slug, $post_type, $post_ID ) );
+		// 女孩不哭 2015-01-25 21:49:09
+		$post_name_check = false;
 		/**
 		 * Filter whether the post slug would be bad as a flat slug.
 		 *
