@@ -175,7 +175,7 @@ function get_permalink( $id = 0, $leavename = false ) {
 				 * @param array    $cats Array of all categories associated with the post.
 				 * @param WP_Post  $post The post in question.
 				 */
-				$category_object = apply_filters( 'post_link_category', $cats[0], $cats, $post );
+				$category_object = apply_filters( 'post_link_category', $cats[count($cats)-1], $cats, $post );
 
 				$category_object = get_term( $category_object, 'category' );
 				$category = $category_object->slug;
