@@ -1,0 +1,10 @@
+#wpcontent select option {
+	padding-right: 5px;
+}
+#custom_color-example {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin: 0 7px 0 3px;
+	padding: 4px 14px;
+}
