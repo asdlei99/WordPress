@@ -57,18 +57,28 @@ jQuery('#submit').click(function() {
 		this.form.action,
 		jQuery(this.form).serialize()+'&by=twofei',
 		function(data){
-			console.log(data);
 			if(data.errno == 'success') {
 				jQuery('.commentlist').append(comment_item(data.cmt));
 				jQuery('.comment-form-comment #comment').val('');
+
+				jQuery('.form-submit .succeeded span').html(data.errmsg);
+				jQuery('.form-submit .succeeded').show();
+				setTimeout(function() {
+						jQuery('.form-submit .succeeded').hide();
+					},
+					1500
+				);
+			} else {
+				jQuery('.form-submit .failed span').html(data.errmsg);
+				jQuery('.form-submit .failed').show();
+				setTimeout(function() {
+						jQuery('.form-submit .failed').hide();
+					},
+					1500
+				);
 			}
+
 			jQuery('.form-submit .submitting').hide();
-			jQuery('.form-submit .succeeded').show();
-			setTimeout(function() {
-					jQuery('.form-submit .succeeded').hide();
-				},
-				1500
-			);
 		},
 		'json'
 	);
@@ -82,6 +92,8 @@ jQuery('#commentform .form-submit').append(
 	+	'<span> 正在提交...</span>'
 	+ '</span>'
 	+ '<span class="succeeded" style="display: none; color: green; margin-left: 1em;">'
-	+ '<i class="fa fa-info-circle"></i><span> 提交成功！</span></span>'
+	+ '<i class="fa fa-mr fa-info-circle"></i><span></span></span>'
+	+ '<span class="failed" style="display: none; color: red; margin-left: 1em;">'
+	+ '<i class="fa fa-mr fa-info-circle"></i><span></span></span>'
 );
 
