@@ -2148,6 +2148,7 @@ function get_avatar( $id_or_email, $size = '96', $default = '', $alt = false ) {
 	if ( !empty($email) )
 		$email_hash = md5( strtolower( trim( $email ) ) );
 
+	/*
 	if ( is_ssl() ) {
 		$host = 'https://secure.gravatar.com';
 	} else {
@@ -2155,7 +2156,8 @@ function get_avatar( $id_or_email, $size = '96', $default = '', $alt = false ) {
 			$host = sprintf( "http://%d.gravatar.com", ( hexdec( $email_hash[0] ) % 2 ) );
 		else
 			$host = 'http://0.gravatar.com';
-	}
+	}*/
+	$host = 'https://secure.gravatar.com';
 
 	if ( 'mystery' == $default )
 		$default = "$host/avatar/ad516503a11cd5ca435acc9bb6523536?s={$size}"; // ad516503a11cd5ca435acc9bb6523536 == md5('unknown@gravatar.com')
