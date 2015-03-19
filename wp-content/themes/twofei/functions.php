@@ -2,6 +2,23 @@
 
 add_action( 'after_setup_theme', 'picochic_setup' );
 
+function twofei_show_head_meta() {
+	$p = get_queried_object();
+	if($p){
+		echo "\n<meta name='description' content='".$p->post_title."' />";
+
+		$tagnames = '女孩不哭';
+		if($posttags = get_the_tags($p->ID)){
+			foreach($posttags as $tag){
+				$tagnames .= ', ' .  $tag->name;
+			}
+		}
+		echo "\n<meta name='keywords' content='".$tagnames."' />\n";
+	}
+}
+
+add_action('wp_head', 'twofei_show_head_meta');
+
 function picochic_get_post_views($id, $inc) {
 	$view = 0;
 	$metas = get_post_meta(1, 'twofei_views', true);
