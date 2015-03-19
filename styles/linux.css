@@ -1,0 +1,17 @@
+.entry pre.shell {
+	background-color: rgba(3, 3, 3, 0.7);
+	padding: 1em;
+	font-family: Consolas, monospace;
+	color: #DFDFDF;
+	margin-bottom: 1em;
+	border-radius: 2px;
+}
+
+.entry pre.shell .sh-ul {
+	border-bottom: 1px solid #DFDFDF;
+}
+
+.entry pre.shell .sh-cr-red {
+	color: red;
+}
+
