@@ -194,6 +194,10 @@ $comment->avatar = get_avatar($comment->comment_author_email, 48);
 $pri = ['comment_author_email', 'comment_author_IP', 'comment_agent',
 	'comment_karma', 'comment_approved', 'comment_type', 'user_id',
 ];
+
+// 判断是否是我自己的评论
+$comment->is_author = $comment->comment_author_email === 'anhbk@qq.com';
+
 // 屏蔽隐私 及 一些不需要的字段
 foreach($pri as $p){
 	unset($comment->$p);

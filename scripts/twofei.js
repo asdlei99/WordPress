@@ -9,6 +9,9 @@ function comment_item(cmt) {
 	s += cmt.avatar;
 	s += '</div>\n';
 	s += '<div class="comment-meta">\n';
+	if(cmt.is_author) {
+		s += '<span style="color: red;">楼主 </span>';
+	}
 	s += '<span>' + cmt.comment_author + '</span>\n';
 	s += ' @ ';
 	s += '<span>' + cmt.comment_date + '</span>\n';

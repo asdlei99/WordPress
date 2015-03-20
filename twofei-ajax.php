@@ -85,6 +85,9 @@ function tf_get_comments() {
 		// 评论过滤
 		$c->comment_content = apply_filters('comment_text', $c->comment_content);
 
+		// 判断是否是我自己的评论
+		$c->is_author = $c->comment_author_email === 'anhbk@qq.com';
+
 		// 头像
 		$c->avatar = get_avatar($c, 48);
 
