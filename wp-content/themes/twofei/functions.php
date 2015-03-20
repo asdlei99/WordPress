@@ -4,7 +4,7 @@ add_action( 'after_setup_theme', 'picochic_setup' );
 
 function twofei_show_head_meta() {
 	$p = get_queried_object();
-	if($p){
+	if($p && $p instanceof WP_Post){
 		echo "\n<meta name='description' content='".$p->post_title."' />";
 
 		$tagnames = '女孩不哭';
