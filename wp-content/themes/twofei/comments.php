@@ -5,7 +5,7 @@
 		return;
 	}
 ?>
-<?php if ( have_comments() ) : ?>
+<?php if ( have_comments() || comments_open() ) : ?>
 <div id="comments">
 	<h3><?php comments_number('评论 (0条)', '评论 (1条)', '评论 (%条)');?></h3>
 	<ol class="commentlist">
@@ -32,15 +32,10 @@
 		<input type="hidden" id="post_id" name="post_id" value="<?php echo $post->ID; ?>" />
 	</div>
 </div>
-	<?php else : // this is displayed if there are no comments so far ?>
-
-	<?php if (comments_open()) : ?>
-		<!-- If comments are open, but there are no comments. -->
-
-	 <?php elseif (! comments_open() && ! is_page()) : // comments are closed ?>
+ <?php else: 
+	if (! comments_open() && ! is_page()) : // comments are closed ?>
 		<!-- If comments are closed. -->
 		<p class="nocomments"><?php _e('Comments closed', 'picochic')?></p>
-
 	<?php endif; ?>
 <?php endif; ?>
 
