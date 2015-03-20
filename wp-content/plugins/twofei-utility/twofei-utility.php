@@ -26,6 +26,16 @@ function tu_comment_filter() {
 		die(-1);
 	}
 
+	if('anhbk@qq.com' === strtolower($email)){
+		header('HTTP/1.1 200 OK');
+		header('Content-Type: application/json');
+		echo json_encode([
+			'errno' => 'error',
+			'errmsg' => '想冒充我？',
+		]);
+		die(-1);
+	}
+
 	$url = $_POST['url'];
 	if(preg_match('/\.co\.uk/', $url)) {
 		header('HTTP/1.1 200 OK');
