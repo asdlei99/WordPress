@@ -421,10 +421,11 @@ h3 {
 
 #comments {
 	clear: both;
+	margin-bottom: 1em;
 }
 
 #comments h3, h3#reply-title {
-	font-size: 22px;
+	font-size: 17px;
 	margin: 0;
 	padding: 10px 15px 7px;
 	border-bottom: 1px solid #ccc;
@@ -440,7 +441,7 @@ h3 {
 
 .commentlist li {
 	list-style: none;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 
 #comments ul.children {
@@ -458,6 +459,11 @@ h3 {
 	text-align: justify;
 	padding-bottom: 12px;
 	hyphens: auto;
+	margin: 0px;
+}
+
+.commentlist pre {
+	margin-top: 0px;
 }
 
 .comment-body {
