@@ -35,7 +35,7 @@
 			}
 		}
 		else{
-			$a = preg_split('/:/', $str);
+			$a = preg_split('/:/', $str, 2);
 			$a[1] = trim($a[1]);
 			$hdr[$a[0]] = $a[1];
 		}
@@ -47,7 +47,7 @@
 		header($hdr['Status']);
 
 		$wanthdr = array(
-			//'Last-Modified',
+			'Last-Modified',
 			'ETag',
 			'Content-Length',
 			'Content-Type'
