@@ -16,8 +16,8 @@ body {
 	font-family: Consolas, monospace;
 }
 
-pre, .code-block {
-	overflow: auto;
+pre, .code-block, div.syntaxhighlighter {
+	overflow: auto !important;
 	max-height: 500px;
 }
 
@@ -65,11 +65,20 @@ h3 {
 	font-size: 1.1em;
 }
 
+
 .fa-mr {
 	margin-right: 0.5em;
 }
 
 /* 头部 */
+
+#iebar {
+	text-align: center;
+	font-size: 1.5em;
+	background: red;
+	color: white;
+	display: none;
+}
 
 #header {
 	background: url('images/hdr.png');
@@ -361,6 +370,16 @@ h3 {
 .entry img:hover {
 	border: 1px solid purple;
 	margin: -1px;
+}
+
+/* 文章表格 */
+.entry table {
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+.entry table td {
+	border: 1px solid gray;
 }
 
 /* 评论 */
