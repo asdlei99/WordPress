@@ -5,7 +5,7 @@ add_action( 'after_setup_theme', 'picochic_setup' );
 function twofei_show_head_meta() {
 	$p = get_queried_object();
 	if($p && $p instanceof WP_Post){
-		echo "\n<meta name='description' content='".$p->post_title."' />";
+		echo "\n<meta name='description' content='".esc_attr($p->post_title)."' />";
 
 		$tagnames = '女孩不哭';
 		if($posttags = get_the_tags($p->ID)){
@@ -13,7 +13,7 @@ function twofei_show_head_meta() {
 				$tagnames .= ', ' .  $tag->name;
 			}
 		}
-		echo "\n<meta name='keywords' content='".$tagnames."' />\n";
+		echo "\n<meta name='keywords' content='".esc_attr($tagnames)."' />\n";
 	}
 }
 
