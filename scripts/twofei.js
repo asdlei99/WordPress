@@ -1,5 +1,9 @@
 // 加载今日英语
-jQuery('#today_english').load('/twofei-ajax.php', 'action=today_english');
+jQuery.post('/twofei-ajax.php',
+	'action=today_english',
+	function(data){
+		jQuery('#today_english').html(data);
+	});
 
 // IE - no!
 if(/MSIE/.test(navigator.userAgent)){

@@ -13,7 +13,7 @@ function get_today_english() {
 	$html = curl_exec($ch);
 	curl_close($ch);
 	$doc = new DOMDocument();
-	$doc->loadHTML('<?xml version="1.0" encoding="UTF-8" ?>' . $html);
+	@$doc->loadHTML('<?xml version="1.0" encoding="UTF-8" ?>' . $html);
 
 	$have = false;
 
