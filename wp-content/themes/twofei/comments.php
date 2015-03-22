@@ -20,7 +20,7 @@
 		?>
 	</ol>
 	<div id="load-comments">
-		<button>加载评论</button>
+		<span class="load">加载评论</span>
 		<span class="loading" style="display: none; color: red;">
 			<i class="fa fa-spin fa-spinner"></i> 
 			<span> 加载中...</span>

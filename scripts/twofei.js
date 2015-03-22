@@ -34,7 +34,7 @@ function comment_item(cmt) {
 
 var start_id = '0';
 
-jQuery('#load-comments button').click(function() {
+jQuery('#load-comments span.load').click(function() {
 	jQuery('#load-comments span.loading').show();
 	jQuery.post(
 		'/twofei-ajax.php',

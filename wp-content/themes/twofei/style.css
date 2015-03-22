@@ -402,15 +402,15 @@ h3 {
 	padding-left: 54px;
 }
 
-#comments #load-comments button {
-	padding: 10px;	
+#comments #load-comments span.load {
+	padding: 6px;
 	cursor: pointer;
 	border: none;
 	color: white;
 	background-color: rgba(60,60,60,0.3);
 }
 
-#comments #load-comments button:hover {
+#comments #load-comments span.load:hover {
 	background-color: rgba(60,60,60,0.6);
 }
 
