@@ -52,7 +52,7 @@ function tf_get_comments() {
 
 	$field_must = ['post_id'];
 	foreach($field_must as $m){
-		if(!isset($_GET[$m])){
+		if(!isset($_POST[$m])){
 			header_json();
 			echo json_encode([
 				'errno'		=> 'error',
@@ -62,7 +62,7 @@ function tf_get_comments() {
 		}
 	}
 
-	$allowed_fields = ['number', 'post_id', 'offset'];
+	$allowed_fields = ['number', 'post_id', 'start_id'];
 
 	$fields = [
 		'status'	=> 'approve',
@@ -71,8 +71,8 @@ function tf_get_comments() {
 	];
 
 	foreach($allowed_fields as $f){
-		if(isset($_GET[$f])){
-			$fields[$f] = $_GET[$f];
+		if(isset($_POST[$f])){
+			$fields[$f] = $_POST[$f];
 		}
 	}
 
@@ -107,7 +107,7 @@ function tf_get_comments() {
 	echo json_encode($msg);
 }
 
-$act = $_GET['action'];
+$act = $_POST['action'];
 
 if($act == 'today_english'){
 	header('200 OK HTTP/1.1');

@@ -362,6 +362,8 @@ class WP_Comment_Query {
 		global $wpdb;
 
 		$defaults = array(
+			// twofei 
+			'start_id' => '0',
 			'author_email' => '',
 			'author__in' => '',
 			'author__not_in' => '',
@@ -746,6 +748,10 @@ class WP_Comment_Query {
 		if ( $where ) {
 			$where = 'WHERE ' . $where;
 		}
+
+		// twofei
+		$start_id = absint($this->query_vars['start_id']);
+		$where = $where . ' AND comment_ID>'.$start_id;
 
 		if ( $groupby ) {
 			$groupby = 'GROUP BY ' . $groupby;

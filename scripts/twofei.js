@@ -1,6 +1,14 @@
 // 加载今日英语
 jQuery('#today_english').load('/twofei-ajax.php', 'action=today_english');
 
+// IE - no!
+if(/MSIE/.test(navigator.userAgent)){
+	jQuery('#iebar').show();
+	setTimeout(function(){
+		jQuery('#iebar').hide();
+	}, 5000);
+}
+
 // 加载评论
 function comment_item(cmt) {
 	var s = '';
@@ -24,14 +32,14 @@ function comment_item(cmt) {
 	return s;
 }
 
-var cmts_loaded = 0;
+var start_id = '0';
 
 jQuery('#load-comments button').click(function() {
 	jQuery('#load-comments span.loading').show();
-	jQuery.get(
+	jQuery.post(
 		'/twofei-ajax.php',
-		'action=get_comments&number=5' 
-			+ '&offset=' + cmts_loaded 
+		'action=get_comments&number=2' 
+			+ '&start_id=' + start_id 
 			+ '&post_id=' + jQuery('#load-comments #post_id').val(),
 		function(data) {
 			var cmts = data.cmts || [];
@@ -39,7 +47,7 @@ jQuery('#load-comments button').click(function() {
 				jQuery('.commentlist').append(comment_item(cmts[i]));
 			}
 			jQuery('#load-comments span.loading').hide();
-			cmts_loaded += cmts.length;
+
 			if(cmts.length == 0) {
 				jQuery('#load-comments span.none').show();
 				setTimeout(function(){
@@ -47,6 +55,8 @@ jQuery('#load-comments button').click(function() {
 					},
 					1500
 				);
+			} else {
+				start_id = cmts[cmts.length-1].comment_ID;
 			}
 		},
 		'json'

@@ -103,6 +103,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div id="iebar">抱歉，本站无法在“IE”浏览器下很好地显示！</div>
 <div id="wrapper">
 	<header id="header">
 
@@ -138,7 +139,7 @@
 				}
 			}
 		</script>
-		<div title="来点音乐？" id="music_button" onclick="audio1.paused ? audio1.play() : audio1.pause();">♪</div>
+		<div title="啊，最近没时间种蘑菇，怎么办？" id="music_button" onclick="audio1.paused ? audio1.play() : audio1.pause();">♪</div>
 
 	</header>
 
