@@ -69,13 +69,15 @@ jQuery('#load-comments span.load').click(function() {
 
 // Ajax评论提交
 jQuery('#submit').click(function() {
+	var timeout = 1500;
+
+	jQuery(this).attr('disabled', 'disabled');
 	jQuery('.form-submit .submitting').show();
 	jQuery.post(
 		this.form.action,
 		jQuery(this.form).serialize()+'&by=twofei',
 		function(data){
 			if(data.errno == 'success') {
-				jQuery('.commentlist').append(comment_item(data.cmt));
 				jQuery('.comment-form-comment #comment').val('');
 
 				jQuery('.form-submit .succeeded span').html(data.errmsg);
@@ -83,7 +85,7 @@ jQuery('#submit').click(function() {
 				setTimeout(function() {
 						jQuery('.form-submit .succeeded').hide();
 					},
-					1500
+					timeout
 				);
 			} else {
 				jQuery('.form-submit .failed span').html(data.errmsg);
@@ -91,14 +93,19 @@ jQuery('#submit').click(function() {
 				setTimeout(function() {
 						jQuery('.form-submit .failed').hide();
 					},
-					1500
+					timeout
 				);
 			}
 
 			jQuery('.form-submit .submitting').hide();
 		},
 		'json'
-	);
+	)
+	.always(setTimeout(function(){
+			jQuery('#submit').removeAttr('disabled');
+		},
+		timeout
+	));
 	return false;
 });
 

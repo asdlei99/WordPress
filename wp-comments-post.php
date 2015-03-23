@@ -175,6 +175,15 @@ if ( ! $comment_id ) {
 	//wp_die( __( "<strong>ERROR</strong>: The comment could not be saved. Please try again later." ) );
 }
 
+// 因为可能出现多个地方同时提交数据，所以并不直接返回评论
+// 只是返回一个状态值，新添加的所有评论通过ajax加载所有。
+$msg = [];
+$msg['errno'] = 'success';
+$msg['errmsg'] = '评论成功';
+
+echo json_encode($msg);
+exit;
+
 $comment = get_comment( $comment_id );
 
 /**
