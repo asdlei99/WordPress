@@ -80,7 +80,13 @@ function tf_get_comments() {
 
 	$pri = ['comment_author_email', 'comment_author_IP', 'comment_agent',
 		'comment_karma', 'comment_approved', 'comment_type', 'user_id',
+		'comment_date_gmt',
 	];
+
+	$ren = ['ID', 'post_ID', 'author', 'author_url', 'date', 'content', 'parent'];
+	$ren_to = ['id', 'post_id', 'user', 'url', 'date', 'content', 'parent'];
+ 
+
 	foreach($cmts as $c){
 		// 评论过滤
 		$c->comment_content = apply_filters('comment_text', $c->comment_content);
@@ -94,6 +100,14 @@ function tf_get_comments() {
 		// 屏蔽隐私 及 一些不需要的字段
 		foreach($pri as $p){
 			unset($c->$p);
+		}
+
+		// 简化
+		for($i=0; $i<count($ren); $i++){
+			$s = 'comment_'.$ren[$i];
+			$d = $ren_to[$i];
+			$c->$d = $c->$s;
+			unset($c->$s);
 		}
 	}
 

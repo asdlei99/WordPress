@@ -10,6 +10,7 @@ body {
 	font: 12px/1.65 "Microsoft YaHei",Helvetica,Arial;
 	overflow-y: scroll;
 	background: url('images/bg.jpg') repeat fixed;
+	position: relative;
 }
 
 .mono, tt, code {
@@ -239,7 +240,8 @@ h3 {
 @media screen and (min-width: 701px) {
 	#wrapper {
 		max-width: 850px;
-		margin: 30px auto 20px auto;
+		margin: 0px auto 20px;
+		padding-top: 30px;
 		clear: both;
 	}
 }
@@ -384,25 +386,184 @@ h3 {
 
 /* 评论 */
 
-#comments #load-comments {
-	padding-left: 10px;
+/* 评论标题 */
+#comment-title {
+	font-size: 2em;
+	padding: 0 1em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0;
 }
 
-.commentlist .comment-li .comment-avatar {
+/* 评论列表 */
+#comment-list .comment-avatar {
+	cursor: pointer;
+}
+
+#comment-list, #comment-list .comment-replies ol {
+	padding: 0;
+	list-style: none;
+}
+
+#comment-list .comment-li {
+	padding: 1em;
+}
+
+#comment-list .comment-li .comment-avatar {
 	float: left;
 	width: 48px;
 	height: 48px;
 }
 
-.commentlist .comment-li .comment-meta {
+#comment-list .comment-li .comment-meta {
 	padding-left: 54px;
 }
 
-.commentlist .comment-li .comment-content {
+#comment-list .comment-li .comment-content {
 	padding-left: 54px;
 }
 
-#comments #load-comments span.load {
+#comment-list .comment-li .comment-replies {
+	margin-left: 48px;
+}
+
+#comment-list .comment-li .comment-replies li {
+	padding: 1em;
+	border-top: 1px dashed #ccc;
+}
+
+#comment-list .comment-content p {
+	margin-top: 0;
+}
+
+/* 评论发表框 */
+#comment-form-div {
+	width: 400px;
+	height: 300px;
+	display: none;
+	position: absolute;
+	z-index: 100;
+	background-color: rgba(10,10,10, 0.8);
+	padding: 0px 1em 1em;
+	border: 1px solid purple;
+}
+
+/* 关闭按钮 */
+#comment-form-div .closebtn {
+	color: #D0D0D0;
+	z-index: 1000;
+	position: absolute;
+	width: 30px;
+	cursor: pointer;
+	height: 30px;
+	top: 0.2em;
+	right: 0.2em;
+}
+
+#comment-form-div .closebtn:hover {
+	color: #FFF;
+}
+
+#comment-form-div .closebtn i {
+	margin-left: 11px;
+	margin-top: 7px;
+}
+
+/* 评论框标题 */
+#comment-form-div .comment-title {
+	position: relative;
+	text-align: center;
+	font-size: 2em;
+	color: white;
+}
+
+/* 必填项 */
+#comment-form .fields .field .needed {
+	color: red;
+}
+
+
+/* 评论内容框 */
+#comment-form .fields .field input[type="text"] {
+	width: 250px;
+}
+
+#comment-form .comment-content {
+	position: relative;
+	margin-bottom: 1em;
+}
+
+#comment-form .comment-content textarea {
+	width: 310px;
+	height: 100px;
+}
+
+
+#comment-form .fields .field label, 
+#comment-form .fields .field input[type="text"], 
+#comment-form .comment-content textarea,
+#comment-form-div .comment-content label {
+	color: white;
+	font-family: Consolas, monospace;
+	padding-top: 7px;
+	background-color: transparent;
+}
+
+#comment-form-div .fields .field label,
+#comment-form-div .comment-content label {
+	padding-right: 4px;
+	font-size: 1.2em;
+}
+
+#comment-form .fields .field {
+	padding-bottom: 0.4em;
+}
+
+/* 评论提交 */
+#comment-submit {
+	padding: 8px;
+	background-color: rgba(113,113,113,0.7);
+	color: white;
+	cursor: pointer;
+}
+
+#comment-form .comment-submit .submitting {
+	display: none;
+	color: red;
+	margin-left: 1em;
+}
+
+#comment-form .comment-submit .succeeded {
+	display: none;
+	color: green;
+	margin-left: 1em;
+}
+
+#comment-form .comment-submit .failed {
+	display: none;
+	color: red;
+	margin-left: 1em;
+}
+
+#comment-submit:hover {
+	background-color: rgba(113,113,113,0.9);
+}
+
+/* 加载评论 */
+#load-comments {
+	margin: 2em;
+}
+
+#load-comments .loading {
+	display: none;
+	color: red;
+}
+
+#load-comments .none {
+	display: none;
+	color: green;
+}
+
+#load-comments .load {
 	padding: 6px;
 	cursor: pointer;
 	border: none;
@@ -410,172 +571,16 @@ h3 {
 	background-color: rgba(60,60,60,0.3);
 }
 
-#comments #load-comments span.load:hover {
+#load-comments .load:hover {
 	background-color: rgba(60,60,60,0.6);
 }
 
-#respond .comment-notes {
-	display: none;
-}
-
-#respond input, #respond label {
-	font-family: Consolas, monospace;
-}
-
-#respond label {
-	display: block;
-}
-
-#respond input, #respond textarea {
-	margin-bottom: 7px;
-	background: rgba(255,255,255,0);
-}
-
-.comment-content {
-	font-family: Consolas, monospace;
-	word-break: break-all;
-}
-
-#respond .form-allowed-tags {
-	display: none;
-}
-
-#respond input[type=submit] {
-	padding: 5px 7px 3px;
-	cursor: pointer;
-}
-
-#comments {
-	clear: both;
-	margin-bottom: 1em;
-}
-
-#comments h3, h3#reply-title {
-	font-size: 17px;
-	margin: 0;
-	padding: 10px 15px 7px;
-	border-bottom: 1px solid #ccc;
-}
-	
-.commentlist {
-	padding: 15px; 
-	list-style: none; 
-	overflow: hidden;
-	clear: both;
-	margin: 0;
-}
-
-.commentlist li {
-	list-style: none;
-	padding-top: 10px;
-}
-
-#comments ul.children {
-	border: 0px;
-	padding-top: 0px;
-	padding-left: 40px;
-}
-
-#comments .children p {
-	clear: left;
-}
-
-.commentlist p {
-	color:#292929;
-	text-align: justify;
-	padding-bottom: 12px;
-	hyphens: auto;
-	margin: 0px;
-}
-
-.commentlist pre {
-	margin-top: 0px;
-}
-
-.comment-body {
-	padding: 6px 0px;
-	margin-bottom: 10px;
-	margin-right: 5px;
-	margin-left: 5px;
-}
-
-.comment-author .says {
-	display: none;
-}
-
-.commentlist cite, .commentlist cite a {
-	font-style: normal;
-}
-
-/*#comments .avatar {
-	float: left;
-	margin: 0 15px 0 0;
-}*/
-
-.comment-meta, .comment-reply-link {
-	font-size: 11px;
-	font-family: Consolas;
-}
-
-.comment .fn, .comment .fn a:link {
-	font-family: Consolas, Sans-Serif;
-	font-size: 15px;
-}
-
-#commentform {
-	padding: 5px 20px 10px 15px;
-	margin-top: 10px;
-	line-height: 24px;
-	font-size: 13px;
-}
-
-#respond {
-	padding-bottom: 0;
-}
-
-#respond p {
-	padding-bottom: 0;
-}
-
-#commentform .comment-notes, #commentform .logged-in-as {
-	font-family: Consolas, Sans-Serif;
-}
-
-#comment-form span .required {
-	width: 20px;
-}
-
-#respond input[type=text] {
-	display: block;
-	max-width: 300px;
-}
 
 
-#respond #submit {
-	height: 30px;
-}
 
-#cancel-comment-reply-link {
-	font-size: 13px;
-}
 
-.comment-nav { 
-	margin: 10px 15px 0 15px;
-	font-size: 13px;
-}
 
-#respond .form-submit input#submit {
-	color: white;
-	background-color: rgba(0,0,0,0.4);
-}
 
-#respond .form-submit input#submit:hover {
-	background-color: rgba(0,0,0,0.6);
-}
-
-#respond .comment-form-comment #comment {
-	font-size: 12px;
-}
 
 /* 分页 */
 #content .pagination .screen-reader-text {

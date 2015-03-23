@@ -1,7 +1,5 @@
 <!DOCTYPE html> 
-<html lang="zh-CN">
-<!--
-      ,,,::::t:MMMMMMMMMBVt:+.. 
+<!-- ,,,::::t:MMMMMMMMMBVt:+.. 
 	  　　 ,IVXVYIBttt+::+IVVMMMMMMRR: 
 	  　　 ,YYVYItMYti+i++:X+Rt:tXWRMR, 
 	  　　 .YRiIYRMViitVXRWRYMI++++itMM.. 
@@ -71,10 +69,9 @@
 	  　　　　　　　YYBXXYR:,R: 
 	  　　　　　　 tIYYYIY:　i:
 -->
-
+<html lang="zh-CN">
 <head>
-	<meta charset="<?php bloginfo('charset'); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="UTF-8" />
 	<title><?php
 		global $page, $paged;
 
@@ -90,37 +87,25 @@
 			echo ' | ' . sprintf( __( 'Page %s', 'picochic' ), max( $paged, $page ) );
 
 		?></title>
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo('stylesheet_directory').'/font-awesome-4.3.0/css/font-awesome.min.css' ?>" />
-	<!--link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" / -->
-
-	<!-- HTML5 for IE < 9 -->
-	<!--[if lt IE 9]>
-	<script src="/scripts/html5.js"></script>
-	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo('stylesheet_directory'); ?>/font-awesome-4.3.0/css/font-awesome.min.css" />
 
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-<div id="iebar">抱歉，本站无法在“IE”浏览器下很好地显示！</div>
+
 <div id="wrapper">
+
 	<header id="header">
 
 		<section id="head">
 			<h1 title="Do you like it ?" onclick="location.href = location.protocol + '//' + location.host;"><?php bloginfo('name'); ?><sup> ♡</sup></h1>
-			<!-- p class="description"><?php //bloginfo('description'); ?></p -->
 			<div class="description" id="today_english">
 				<p>&nbsp;</p><p>&nbsp;</p>
 			</div>
 		</section>
 
-		<?php
-			$header_image = get_header_image();
-			if (!empty($header_image)) { ?>
-			<div id="header-image-div"><img id="headerimage" src="<?php header_image(); ?>" alt="" /></div>
-		<?php } ?>
-		
 		<nav id="mobnav" class="mono">
 			<div id="music_progress"></div>
 			<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
@@ -128,21 +113,21 @@
 
 		<script type="text/javascript">
 			var audio1 = new Audio('/bg.mp3');
+			var progress = document.getElementById('music_progress');
 			if(audio1) {
 				audio1.ontimeupdate = function() {
 					var percent = (this.currentTime / this.duration * 100);
-					var progress = document.getElementById('music_progress');
 					progress.style.width = percent+'%';
 				}
 				audio1.onended = function() {
-					document.getElementById('music_progress').style.width = '0%';
+					progress.style.width = '0%';
 				}
 			}
 		</script>
+
 		<div title="啊，最近没时间种蘑菇，怎么办？" id="music_button" onclick="audio1.paused ? audio1.play() : audio1.pause();">♪</div>
 
 	</header>
 
 	<section id="main">
-
 

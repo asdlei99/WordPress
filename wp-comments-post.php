@@ -19,6 +19,14 @@ if( 'twofei' != $_POST['by']){
 	exit;
 }
 
+$fs = ['content', 'post_id', 'parent'];
+$fd = ['comment', 'comment_post_ID', 'comment_parent'];
+
+for($i=0; $i<count($fs); $i++){
+	$_POST[$fd[$i]] = $_POST[$fs[$i]];
+	unset($_POST[$fs[$i]]);
+}
+
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
 
