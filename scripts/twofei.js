@@ -110,8 +110,20 @@ jQuery('#submit').click(function() {
 		},
 		'json'
 	)
+	.fail(function(xhr, sta, e){
+		jQuery('.form-submit .submitting').hide();
+		var info = jQuery('.form-submit .failed span');
+		if(xhr.status == '409'){
+			info.text('请不要过快地提交，或提交相同的评论！');
+		} else {
+			info.text('未知错误！');
+		}
+		jQuery('.form-submit .failed').show();
+	})
 	.always(setTimeout(function(){
+			jQuery('.form-submit .submitting').hide();
 			jQuery('#submit').removeAttr('disabled');
+			jQuery('.form-submit .failed').hide();
 		},
 		timeout
 	));
