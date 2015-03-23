@@ -39,6 +39,11 @@ function comment_item(cmt) {
 var start_id = '0';
 
 jQuery('#load-comments span.load').click(function() {
+	if(jQuery(this).attr('loading') === 'true')
+		return;
+
+	var load = this;
+	jQuery(this).attr('loading', 'true');
 	jQuery('#load-comments span.loading').show();
 	jQuery.post(
 		'/twofei-ajax.php',
@@ -64,7 +69,10 @@ jQuery('#load-comments span.load').click(function() {
 			}
 		},
 		'json'
-	);
+	)
+	.always(setTimeout(function(){
+			jQuery(load).removeAttr('loading');
+	},1500));
 });
 
 // Ajax评论提交
