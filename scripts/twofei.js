@@ -67,6 +67,7 @@ jQuery('#load-comments span.load').click(function() {
 			} else {
 				start_id = cmts[cmts.length-1].comment_ID;
 			}
+			jQuery(load).removeAttr('loading');
 		},
 		'json'
 	)

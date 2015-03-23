@@ -175,15 +175,6 @@ if ( ! $comment_id ) {
 	//wp_die( __( "<strong>ERROR</strong>: The comment could not be saved. Please try again later." ) );
 }
 
-// 因为可能出现多个地方同时提交数据，所以并不直接返回评论
-// 只是返回一个状态值，新添加的所有评论通过ajax加载所有。
-$msg = [];
-$msg['errno'] = 'success';
-$msg['errmsg'] = '评论成功';
-
-echo json_encode($msg);
-exit;
-
 $comment = get_comment( $comment_id );
 
 /**
@@ -196,26 +187,11 @@ $comment = get_comment( $comment_id );
  */
 do_action( 'set_comment_cookies', $comment, $user );
 
-//$comment = get_comment( $comment_id, ARRAY_A);
-$comment->comment_content = apply_filters('comment_text', $comment->comment_content);
-$comment->avatar = get_avatar($comment->comment_author_email, 48);
-
-$pri = ['comment_author_email', 'comment_author_IP', 'comment_agent',
-	'comment_karma', 'comment_approved', 'comment_type', 'user_id',
-];
-
-// 判断是否是我自己的评论
-$comment->is_author = $comment->comment_author_email === 'anhbk@qq.com';
-
-// 屏蔽隐私 及 一些不需要的字段
-foreach($pri as $p){
-	unset($comment->$p);
-}
-
+// 因为可能出现多个地方同时提交数据，所以并不直接返回评论
+// 只是返回一个状态值，新添加的所有评论通过ajax加载所有。
 $msg = [];
 $msg['errno'] = 'success';
 $msg['errmsg'] = '评论成功';
-$msg['cmt'] = $comment;
 
 echo json_encode($msg);
 exit;
