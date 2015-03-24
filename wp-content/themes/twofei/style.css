@@ -237,7 +237,7 @@ h3 {
 }
 
 /* 内容 */
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 801px) {
 	#wrapper {
 		max-width: 850px;
 		margin: 0px auto 20px;
@@ -246,7 +246,7 @@ h3 {
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 	#wrapper {
 		margin: 0px;
 		clear: both;
@@ -259,7 +259,7 @@ h3 {
 	background-color: rgba(255,255,255,0.6);
 }
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 801px) {
 	#content {
 		float: left;
 		max-width: 74%;
@@ -272,7 +272,7 @@ h3 {
 	}
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 	#content {
 
 	}
