@@ -32,8 +32,8 @@ jq('#comment-form-div .closebtn').click(function(){
 // 从评论生成html内容
 function comment_item(cmt) {
 	var s = '';
-	s += '<li style="display: none;" class="comment-li" id="comment-li-' + cmt.id + '">\n';
-	s += '<div class="comment-avatar" onclick="location.hash=\'#comment-li-'+cmt.id + '\'">' + cmt.avatar + '</div>\n';
+	s += '<li style="display: none;" class="comment-li" id="comment-' + cmt.id + '">\n';
+	s += '<div class="comment-avatar" onclick="location.hash=\'#comment-'+cmt.id + '\'">' + cmt.avatar + '</div>\n';
 	s += '<div class="comment-meta">\n';
 
 	if(cmt.is_author) {
@@ -59,8 +59,8 @@ function comment_reply_to(p){
 
 // 为上一级评论添加div
 function comment_add_reply_div(id){
-	if(jq('#comment-li-'+id+' .comment-replies').length === 0){
-		jq('#comment-li-'+id).append('<div class="comment-replies"><ol></ol></div>');
+	if(jq('#comment-'+id+' .comment-replies').length === 0){
+		jq('#comment-'+id).append('<div class="comment-replies"><ol></ol></div>');
 	}
 }
 
@@ -86,11 +86,11 @@ jq('#load-comments .load').click(function() {
 			for(var i=0; i<cmts.length; i++){
 				if(cmts[i].parent != 0) { // 回复给某人
 					comment_add_reply_div(cmts[i].parent);
-					jq('#comment-li-'+cmts[i].parent + ' .comment-replies ol').append(comment_item(cmts[i]));
+					jq('#comment-'+cmts[i].parent + ' .comment-replies ol').append(comment_item(cmts[i]));
 				} else {
 					jq('#comment-list').append(comment_item(cmts[i]));
 				}
-				jq('#comment-li-'+cmts[i].id).fadeIn();
+				jq('#comment-'+cmts[i].id).fadeIn();
 			}
 			jq('#load-comments .loading').hide();
 
