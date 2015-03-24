@@ -548,11 +548,12 @@ h3 {
 	background-color: rgba(113,113,113,0.9);
 }
 
-/* 加载评论 */
-#load-comments {
+/* 评论功能区 */
+#comments .comment-func {
 	margin: 2em;
 }
 
+/* 加载评论 & 发表评论 */
 #load-comments .loading {
 	display: none;
 	color: red;
@@ -563,7 +564,7 @@ h3 {
 	color: green;
 }
 
-#load-comments .load {
+#load-comments .load, #post-comment .post-comment {
 	padding: 6px;
 	cursor: pointer;
 	border: none;
@@ -571,7 +572,7 @@ h3 {
 	background-color: rgba(60,60,60,0.3);
 }
 
-#load-comments .load:hover {
+#load-comments .load:hover, #post-comment .post-comment:hover {
 	background-color: rgba(60,60,60,0.6);
 }
 
