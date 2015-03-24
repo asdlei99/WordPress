@@ -83,7 +83,7 @@ jq('#load-comments .load').click(function() {
 	jq('#load-comments .loading').show();
 	jq.post(
 		'/twofei-ajax.php',
-		'action=get_comments&number=5' 
+		'action=get_comments&number=10' 
 			+ '&start_id=' + start_id 
 			+ '&post_id=' + jq('#post_id').val(),
 		function(data) {

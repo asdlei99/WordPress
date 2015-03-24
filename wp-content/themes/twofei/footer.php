@@ -7,6 +7,7 @@
 
 <div id="iebar">抱歉，本站无法在“IE”浏览器下很好地显示！</div>
 
+<?php if(is_singular()) : ?>
 <div id="comment-form-div">
 
 	<div class="closebtn" title="关闭">
@@ -62,6 +63,7 @@
 		</div>
 	</form>
 </div>
+<?php endif; ?>
 
 <?php wp_footer(); ?>
 
