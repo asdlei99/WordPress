@@ -79,6 +79,7 @@ function tf_get_comments() {
 	$cmts = get_comments($fields);
 	$count = get_comments([
 		'post_id' => $fields['post_id'],
+		'status' => 'approve',
 		'count' => true,
 		]);
 
