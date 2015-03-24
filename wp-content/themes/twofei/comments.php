@@ -1,5 +1,7 @@
 <div id="comments">
-	<h3 id="comment-title">评论</h3>
+	<h3 id="comment-title">
+		评论(0/<?php echo get_comments(['post_id' => $post->ID, 'count' => true]); ?>)
+	</h3>
 
 	<ol id="comment-list">
 

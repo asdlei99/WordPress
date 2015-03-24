@@ -106,6 +106,7 @@ jq('#load-comments .load').click(function() {
 				cmt_loaded += cmts.length;
 			}
 			jq(load).removeAttr('loading');
+			jq('#comment-title').text('评论('+cmt_loaded+'/'+data.count+')');
 		},
 		'json'
 	)
@@ -113,7 +114,6 @@ jq('#load-comments .load').click(function() {
 			jq(load).removeAttr('loading');
 	},1500));
 });
-
 
 // Ajax评论提交
 jq('#comment-submit').click(function() {

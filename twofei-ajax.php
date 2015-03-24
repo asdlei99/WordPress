@@ -77,6 +77,10 @@ function tf_get_comments() {
 	}
 
 	$cmts = get_comments($fields);
+	$count = get_comments([
+		'post_id' => $fields['post_id'],
+		'count' => true,
+		]);
 
 	$pri = ['comment_author_email', 'comment_author_IP', 'comment_agent',
 		'comment_karma', 'comment_approved', 'comment_type', 'user_id',
@@ -111,13 +115,16 @@ function tf_get_comments() {
 		}
 	}
 
-	header_json();
-	
 	$msg = [
 		'errno'		=> 'success',
 		'errmsg'	=> '获取成功',
 		'cmts'		=> $cmts,
 	];
+
+	$msg['count'] = $count;
+
+	header_json();
+	
 	echo json_encode($msg);
 }
 
@@ -132,6 +139,6 @@ if($act == 'today_english'){
 } else if($act == 'get_comments') {
 	tf_get_comments();
 	die(0);
-}
+} 
 
 
