@@ -435,27 +435,35 @@ h3 {
 	position: absolute;
 	z-index: 100;
 	background-color: rgba(10,10,10, 0.8);
-	padding: 0px 1em 1em;
+	padding: 0px 10px 10px;
 	border: 1px solid purple;
 }
 
-/* 关闭按钮 */
-#comment-form-div .closebtn {
+/* 关闭和最大化按钮 */
+#comment-form-div .closebtn, #comment-form-div .maxbtn {
 	color: #D0D0D0;
 	z-index: 1000;
 	position: absolute;
 	width: 30px;
 	cursor: pointer;
 	height: 30px;
-	top: 0.2em;
-	right: 0.2em;
 }
 
-#comment-form-div .closebtn:hover {
+#comment-form-div .closebtn {
+	top: 3px;
+	right: 3px;
+}
+
+#comment-form-div .maxbtn {
+	top: 3px;
+	right: 33px;
+}
+
+#comment-form-div .closebtn:hover, #comment-form-div .maxbtn:hover {
 	color: #FFF;
 }
 
-#comment-form-div .closebtn i {
+#comment-form-div .closebtn i, #comment-form-div .maxbtn i {
 	margin-left: 11px;
 	margin-top: 7px;
 }
@@ -489,6 +497,15 @@ h3 {
 	height: 100px;
 }
 
+#comment-content-2 {
+	border: 1px dashed gray;
+	color: white;
+	background-color: transparent;
+	display: none;
+	margin-top: 10px;
+	width: 384px;
+	height: 280px;
+}
 
 #comment-form .fields .field label, 
 #comment-form .fields .field input[type="text"], 

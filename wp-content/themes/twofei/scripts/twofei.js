@@ -22,9 +22,26 @@ if(/MSIE/.test(navigator.userAgent)){
 	}, 5000);
 }
 
-
+jq('#comment-form-div').keyup(function(e){
+	if(e.keyCode==27) {
+		if(jq('#comment-form-div .comment-form-div-data input[name="maximized"]').val() === 'true'){
+			jq('#comment-content').val(jq('#comment-content-2').val());
+			jq('#comment-content-2').hide();
+			jq('#comment-form-div .comment-form-div-1').show();
+			jq('#comment-form-div .comment-form-div-data input[name="maximized"]').val('false');
+		} else {
+			jq(this).fadeOut();
+		}
+	}
+});
 jq('#comment-form-div .closebtn').click(function(){
 		jq('#comment-form-div').fadeOut();
+});
+jq('#comment-form-div .maxbtn').click(function(){
+	jq('#comment-content-2').val(jq('#comment-content').val());
+    jq('#comment-form-div .comment-form-div-1').hide();
+	jq('#comment-content-2').show().focus();
+	jq('#comment-form-div .comment-form-div-data input[name="maximized"]').val('true');
 });
 
 // 从评论生成html内容
