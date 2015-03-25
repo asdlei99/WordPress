@@ -73,14 +73,6 @@ h3 {
 
 /* 头部 */
 
-#iebar {
-	text-align: center;
-	font-size: 1.5em;
-	background: red;
-	color: white;
-	display: none;
-}
-
 #header {
 	background: url('images/hdr.png');
 	height: 180px;
@@ -669,5 +661,17 @@ h3 {
 /* 底部 */
 #footer {
 	margin-top: 40px;
+}
+
+#iebar {
+	text-align: center;
+	font-size: 1.5em;
+	background: red;
+	color: white;
+	display: none;
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	left: 0px;
 }
 
