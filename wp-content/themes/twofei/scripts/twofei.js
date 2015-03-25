@@ -172,3 +172,72 @@ jq('#comment-submit').click(function() {
 	return false;
 });
 
+// 评论输入框允许TAB键
+jq('#comment-content').keydown(function(e){
+	if(e.keyCode === 9){
+		var start = this.selectionStart;
+		var end = this.selectionEnd;
+
+		var that = jq(this);
+
+		var value = that.val();
+		var before = value.substring(0, start);
+		var after = value.substring(end);
+		var selArray = value.substring(start, end).split('\n');
+
+		var isIndent = !e.shiftKey;
+
+		if(isIndent){
+			if(start === end || selArray.length === 1){
+				that.val(before + '\t' + after);
+				this.selectionStart = this.selectionEnd = start + 1;
+			} else {
+				var sel = '\t' + selArray.join('\n\t');
+				that.val(before + sel + after);
+				this.selectionStart = start + 1;
+				this.selectionEnd = end + selArray.length; 
+			}
+		} else {
+			var reduceEnd = 0;
+			var reduceStart = false;
+
+			if(selArray.length > 1) {
+				selArray.forEach(function(x, i, a){
+					if(i>0 && x.length>0 &&  x[0]==='\t'){
+						a[i] = x.substring(1);
+						reduceEnd++;
+					}
+				});
+				sel = selArray.join('\n');
+			} else {
+				sel = selArray[0];
+			}
+
+			var b1 = '',b2 = '';
+			if(before.length){
+				var npos = before.lastIndexOf('\n');
+				if(npos !== -1){
+					b1 = before.substring(0, npos+1);
+					b2 = before.substring(npos+1);
+				} else {
+					b1 = '';
+					b2 = before;
+				}
+
+				sel = b2 + sel;
+			}
+
+			if(sel.length && sel[0]==='\t'){
+				sel = sel.substring(1);
+				reduceStart = true;
+			}
+
+			that.val(b1 + sel + after);
+			this.selectionStart = start + (reduceStart ? -1 : 0);
+			this.selectionEnd = end - (reduceEnd + (reduceStart ? 1 : 0));
+		}
+
+		e.preventDefault();
+	}
+});
+
