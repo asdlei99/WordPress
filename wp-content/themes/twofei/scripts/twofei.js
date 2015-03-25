@@ -190,12 +190,12 @@ jq('#comment-submit').click(function() {
 });
 
 // 评论输入框允许TAB键
-jq('#comment-content').keydown(function(e){
+function enableTabIndent(t,e){
 	if(e.keyCode === 9){
-		var start = this.selectionStart;
-		var end = this.selectionEnd;
+		var start = t.selectionStart;
+		var end = t.selectionEnd;
 
-		var that = jq(this);
+		var that = jq(t);
 
 		var value = that.val();
 		var before = value.substring(0, start);
@@ -207,12 +207,12 @@ jq('#comment-content').keydown(function(e){
 		if(isIndent){
 			if(start === end || selArray.length === 1){
 				that.val(before + '\t' + after);
-				this.selectionStart = this.selectionEnd = start + 1;
+				t.selectionStart = t.selectionEnd = start + 1;
 			} else {
 				var sel = '\t' + selArray.join('\n\t');
 				that.val(before + sel + after);
-				this.selectionStart = start + 1;
-				this.selectionEnd = end + selArray.length; 
+				t.selectionStart = start + 1;
+				t.selectionEnd = end + selArray.length; 
 			}
 		} else {
 			var reduceEnd = 0;
@@ -250,10 +250,22 @@ jq('#comment-content').keydown(function(e){
 			}
 
 			that.val(b1 + sel + after);
-			this.selectionStart = start + (reduceStart ? -1 : 0);
-			this.selectionEnd = end - (reduceEnd + (reduceStart ? 1 : 0));
+			t.selectionStart = start + (reduceStart ? -1 : 0);
+			t.selectionEnd = end - (reduceEnd + (reduceStart ? 1 : 0));
 		}
+		return true;
+	}
+	return false;
+}
 
+jq('#comment-content').keydown(function(e){
+	if(enableTabIndent(this, e)){
+		e.preventDefault();
+	}
+});
+
+jq('#comment-content-2').keydown(function(e){
+	if(enableTabIndent(this, e)){
 		e.preventDefault();
 	}
 });
