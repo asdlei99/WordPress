@@ -688,6 +688,10 @@ h3 {
 	text-overflow: ellipsis;
 }
 
+/* 挂件 - 标签云 */
+.widget_tag_cloud .tabcloud a:hover {
+	text-decoration: underline;
+}
 
 /* 底部 */
 #footer {
