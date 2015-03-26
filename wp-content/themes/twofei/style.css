@@ -376,6 +376,20 @@ h3 {
 	border: 1px solid gray;
 }
 
+/* 一些自定义的东东 */
+.entry span.tiybtn {
+	cursor: pointer;
+	color: white;
+	background-color: rgba(152,63,63,0.7);
+	margin: 0.4em;
+	padding: 0.3em;
+	display: inline-block;
+}
+
+.entry span.tiybtn:hover {
+	background-color: rgba(152, 63,63,1);
+}
+
 /* 评论 */
 
 /* 评论标题 */
