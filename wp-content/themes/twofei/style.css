@@ -689,7 +689,7 @@ h3 {
 }
 
 /* 挂件 - 标签云 */
-.widget_tag_cloud .tabcloud a:hover {
+.widget_tag_cloud .tagcloud a:hover {
 	text-decoration: underline;
 }
 
